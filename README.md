@@ -1,8 +1,35 @@
 # eac
 EAC Authenticated Mode of Operation 
 
-### Primitivas Criptogrpaficas 
+### Primitivas Criptográficas Anubis
 ```php
+<?php
+include "EAC.php";
+$plainText = "Mensagem confidencial que precisa ser criptografada";
+$key = hex2bin("00000000000000000000000000000000");  // Exemplo de chave
+$iv = str_repeat("\0", 16);  // Exemplo de IV (contador) com 16 bytes zero
+
+$crypt = new Anubis();
+$encryptedData = $crypt->ctrMode($plainText, $key, $iv);
+
+echo bin2hex($encryptedData) ."\n";
+
+// Para descriptografar, basta chamar o mesmo método com os dados cifrados:
+$decryptedData = $crypt->ctrMode($encryptedData, $key, $iv);
+
+echo $decryptedData ."\n";  // Deve imprimir a mensagem original
+
+$key = "0000000000000000";  // Exemplo de chave
+$cmac = new Anubis($key);
+$msg = "mensagem de teste";
+
+$mac = $cmac->generate($msg);
+echo "CMAC: " . bin2hex($mac) . PHP_EOL;
+```
+
+### Primitivas Criptográficas Whirlpool
+```php
+<?php
 function hmac($key, $message) {
     $blockSize = 64;
 
