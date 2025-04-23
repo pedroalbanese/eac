@@ -1,6 +1,6 @@
 <?php
 
-class AnubisEAC {
+class Anubis {
     private $anubis;
 
     /**
