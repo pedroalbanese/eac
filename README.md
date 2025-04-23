@@ -124,3 +124,19 @@ $derivedKeyLen = 40;
 $derivedKey = pbkdf2($password, $salt, $iterations, $derivedKeyLen);
 echo "PBKDF2 com Whirlpool (hex): " . bin2hex($derivedKey) . PHP_EOL;
 ```
+
+## Contribute
+**Use issues for everything**
+- You can help and get help by:
+  - Reporting doubts and questions
+- You can contribute by:
+  - Reporting issues
+  - Suggesting new features or enhancements
+  - Improve/fix documentation
+
+## License
+
+This project is licensed under the ISC License.
+
+#### Copyright (c) 2020-2025 Pedro F. Albanese - ALBANESE Research Lab.  
+Todos os direitos de propriedade intelectual sobre este software pertencem ao autor, Pedro F. Albanese. Vide Lei 9.610/98, Art. 7º, inciso XII.
