@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-include "AnubisEAC.php";
+include "EAC.php";
 
 $key = hex2bin("00000000000000000000000000000000");  // Exemplo de chave
 // $nonce = str_repeat("\0", 12);
