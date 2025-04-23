@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-include "EAC.php";
+include "AnubisEAC.php";
 
 $key = hex2bin("00000000000000000000000000000000");  // Exemplo de chave
 // $nonce = str_repeat("\0", 12);
@@ -8,7 +8,7 @@ $nonce = random_bytes(12);
 $header = "cabecalho";
 $plaintext = "mensagem secreta com eac";
 
-$anubis = new AnubisEAC();
+$anubis = new Anubis();
 list($ciphertext, $tag) = $anubis->encryptEAC($key, $nonce, $header, $plaintext);
 
 echo "Cifrado: " . bin2hex($ciphertext) . "\n";
