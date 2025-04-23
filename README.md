@@ -125,14 +125,14 @@ $derivedKey = pbkdf2($password, $salt, $iterations, $derivedKeyLen);
 echo "PBKDF2 com Whirlpool (hex): " . bin2hex($derivedKey) . PHP_EOL;
 ```
 
-## Contribute
-**Use issues for everything**
-- You can help and get help by:
-  - Reporting doubts and questions
-- You can contribute by:
-  - Reporting issues
-  - Suggesting new features or enhancements
-  - Improve/fix documentation
+## Contribua
+**Use _issues_ para tudo**
+- Você pode ajudar e receber ajuda por meio de:
+  - Relato de dúvidas e perguntas
+- Você pode contribuir por meio de:
+  - Relato de problemas (_issues_)
+  - Sugestão de novos recursos ou melhorias
+  - Aprimoramento ou correção da documentação
 
 ## License
 
