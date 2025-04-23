@@ -30,6 +30,8 @@ echo "CMAC: " . bin2hex($mac) . PHP_EOL;
 ### Primitivas Criptográficas Whirlpool
 ```php
 <?php
+$plainText = "Mensagem confidencial que precisa ser criptografada";
+
 function hmac($key, $message) {
     $blockSize = 64;
 
