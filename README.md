@@ -7,8 +7,7 @@ EAC Authenticated Mode of Operation
 include "EAC.php";
 
 $key = hex2bin("00000000000000000000000000000000");  // Exemplo de chave
-// $nonce = str_repeat("\0", 12);
-$nonce = random_bytes(12);
+$nonce = str_repeat("\0", 12);
 $header = "cabecalho";
 $plaintext = "mensagem secreta com eac";
 
