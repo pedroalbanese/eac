@@ -1,6 +1,33 @@
 # eac
 EAC Authenticated Mode of Operation 
 
+### EAC Exemplo de Uso
+```php
+<?php
+include "EAC.php";
+
+$key = hex2bin("00000000000000000000000000000000");  // Exemplo de chave
+// $nonce = str_repeat("\0", 12);
+$nonce = random_bytes(12);
+$header = "cabecalho";
+$plaintext = "mensagem secreta com eac";
+
+$anubis = new Anubis();
+list($ciphertext, $tag) = $anubis->encryptEAC($key, $nonce, $header, $plaintext);
+
+echo "Cifrado: " . bin2hex($ciphertext) . "\n";
+echo "Tag:     " . bin2hex($tag) . "\n";
+
+echo bin2hex($nonce . $ciphertext . $tag) . "\n";
+
+try {
+    $decrypted = $anubis->decryptEAC($key, $nonce, $header, $ciphertext, $tag);
+    echo "Decifrado: $decrypted\n";
+} catch (Exception $e) {
+    echo "Erro: " . $e->getMessage() . "\n";
+}
+```
+
 ### Primitivas Criptográficas Anubis
 ```php
 <?php
