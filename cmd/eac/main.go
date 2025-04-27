@@ -98,11 +98,6 @@ func main() {
 		log.Fatal("Erro: chave não fornecida (use -key)")
 	}
 
-	// Modos de criptografia/descriptografia (não HKDF)
-	if *keyHex == "" {
-		log.Fatal("Erro: chave não fornecida (use -key)")
-	}
-
 	if *pbkdf2Flag {
 		// Derivação de chave com PBKDF2
 		password := []byte(*keyHex)
