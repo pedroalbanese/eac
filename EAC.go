@@ -15,7 +15,7 @@ type eacAnubis struct {
 
 // NewEAC returns a new AEAD implementation using Anubis in EAC mode.
 func NewEAC(key []byte) (cipher.AEAD, error) {
-	if len(key) < 16 && len(key) > 40 {
+	if len(key) < 16 || len(key) > 40 {
 		return nil, errors.New("eac: invalid key size")
 	}
 	return &eacAnubis{key: key}, nil
