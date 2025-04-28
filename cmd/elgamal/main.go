@@ -182,6 +182,6 @@ func main() {
 			log.Fatalf("Erro ao criptografar: %v", err)
 		}
 
-		fmt.Printf("c1 = %x\nc2 = %x\n", c1, c2)
+		fmt.Printf("c1 = %s\nc2 = %s\n", hex.EncodeToString(c1.Bytes()), hex.EncodeToString(c2.Bytes()))
 	}
 }
