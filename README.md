@@ -1,5 +1,11 @@
-# eac
-EAC Authenticated Mode of Operation 
+# EAC (DLIES)
+EAC Authenticated Mode of Operation
+
+#### EAC (Encrypt-then-Authenticate-then-Combine) - Um Esquema Híbrido de DLIES com Ciphersuites Brasileiras
+
+O EAC (Encrypt-then-Authenticate-then-Combine) é um esquema de criptografia híbrida que combina ElGamal Key Agreement, assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis, o modo de operação EAC, e funções de hash como Whirlpool, além de esquemas de derivação de chave como HMAC, HKDF e PBKDF2.
+
+Ele é interoperável entre PHP e Go, mas pode ser usado de forma independente em qualquer sistema. Projetado para segurança e eficiência, o EAC é uma escolha robusta para aplicações que exigem confidencialidade, autenticidade e integridade.
 
 ### EAC Exemplo de Uso
 ```php
