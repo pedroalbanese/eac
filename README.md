@@ -1,7 +1,7 @@
 # EAC (DLIES) 🇧🇷 
 EAC Authenticated Mode of Operation
 
-#### EAC: Um Esquema Híbrido de DLIES com Ciphersuites Brasileiras
+#### EAC: Um Esquema DLIES Híbrido com Ciphersuites Brasileiras
 
 O EAC (Encrypt-then-Authenticate-then-Combine) é um esquema de criptografia híbrida que combina ElGamal Key Agreement (Negociação de Chave Secreta), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis, o modo de operação AEAD (Authenticated Encryption with Associated Data) EAC, e função de hash Whirlpool, além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2.
 
