@@ -1,4 +1,4 @@
-# EAC (DLIES)
+# EAC (DLIES) 🇧🇷 🇪🇬
 EAC Authenticated Mode of Operation
 
 #### EAC: Um Esquema Híbrido de DLIES com Ciphersuites Brasileiras
