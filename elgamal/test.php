@@ -1,8 +1,8 @@
 <?php
 require_once 'elgamal.php';
 
-$elgamal = new ElGamalCrypto(ELGAMAL_P, ELGAMAL_G);
-$elgamalFile = new ElGamalFile(ELGAMAL_P, ELGAMAL_G);
+$elgamal = new ElGamalCrypto();
+$elgamalFile = new ElGamalFile();
 
 // Configuração de chaves
 $x = $elgamal->hexToDec("2244f8d60ab7d1f907866c3388a522d2afed27c3a6fb3739c480d041d377174c");
