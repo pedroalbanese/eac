@@ -6,18 +6,17 @@ EAC Authenticated Mode of Operation
 O Camelo é um esquema de criptografia híbrida que combina ElGamal Key Agreement (Negociação de Chave Secreta), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis, o modo de operação AEAD (Authenticated Encryption with Associated Data) EAC (Encrypt-then-Authenticate-then-Combine), e função de hash Whirlpool, além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2.
 
 ```
-Emissor                                        Destinatário
-  |                                                  |
-  |--(1) Gera chave simétrica----------------------->|
-  |--(2) Criptografa mensagem com Anubis AEAD------->|
-  |--(3) Encapsula chave simétrica com chave pública-|
-  |--(4) Assina criptograma------------------------->|
-  |--(5) Envia criptograma e assinatura------------->|
-  |                                                  |
-  |                                                  |
-  |<--(6) Verifica assinatura------------------------|
-  |<--(7) Desencapsula chave simétrica---------------|
-  |<--(8) Descriptografa mensagem--------------------|
+Emissor                                                       Destinatário
+  |                                                                 |
+  |---(1) Gera chave simétrica------------------------------------->|
+  |---(2) Criptografa mensagem com Anubis em modo AEAD------------->|
+  |---(3) Encapsula chave simétrica com chave pública do receptor-->|
+  |---(4) Assina criptograma--------------------------------------->|
+  |---(5) Envia criptograma e assinatura--------------------------->|
+  |                                                                 |
+  |<--(6) Verifica assinatura com a chave pública do emissor--------|
+  |<--(7) Desencapsula chave simétrica------------------------------|
+  |<--(8) Descriptografa mensagem-----------------------------------|
 ```
 
 Ele é interoperável entre PHP e Go, mas pode ser usado de forma independente em qualquer sistema. Projetado para segurança e eficiência, o EAC é uma escolha robusta para aplicações que exigem confidencialidade, autenticidade e integridade.
