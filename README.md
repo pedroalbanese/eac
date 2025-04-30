@@ -91,7 +91,7 @@ echo "\n=== Teste Completo Concluído ===\n";
 ```
 
 ### ElGamal Exemplo de Uso (Go)
-```php
+```go
 package main
 
 import (
