@@ -32,7 +32,7 @@ try {
     echo "Erro: " . $e->getMessage() . "\n";
 }
 ```
-### ElGamal Exemplo de Uso
+### ElGamal Exemplo de Uso (PHP)
 ```php
 <?php
 require_once 'elgamal.php';
@@ -88,6 +88,85 @@ if ($valid) {
 
 echo "\n=== Teste Completo Concluído ===\n";
 ?>
+```
+
+### ElGamal Exemplo de Uso (Go)
+```php
+package main
+
+import (
+	"fmt"
+	"log"
+	"math/big"
+
+	"github.com/pedroalbanese/eac/elgamal"
+)
+
+func main() {
+	// Configuração de chaves
+	x, _ := new(big.Int).SetString("2244f8d60ab7d1f907866c3388a522d2afed27c3a6fb3739c480d041d377174c", 16)
+	p, g := elgamal.GetParameters()
+	y := new(big.Int).Exp(g, x, p)
+
+	// Mensagem de teste
+	message := "Mensagem secreta para teste de criptografia e assinatura!"
+
+	fmt.Println("=== Teste de Criptografia ElGamal ===")
+
+	// 1. Criptografar
+	pub := &elgamal.PublicKey{P: p, G: g, Y: y}
+	c1, c2, err := elgamal.Encrypt(pub, []byte(message))
+	if err != nil {
+		log.Fatal("Erro ao criptografar:", err)
+	}
+
+	fmt.Printf("Mensagem original: %s\n", message)
+	fmt.Println("Texto cifrado:")
+	fmt.Printf("c1 = %x\n", c1)
+	fmt.Printf("c2 = %x\n", c2)
+
+	// 2. Descriptografar
+	priv := &elgamal.PrivateKey{P: p, G: g, X: x}
+	decrypted, err := elgamal.Decrypt(priv, c1, c2)
+	if err != nil {
+		log.Fatal("Erro ao descriptografar:", err)
+	}
+
+	fmt.Printf("\nMensagem descriptografada: %s\n", string(decrypted))
+
+	// Verificação de criptografia
+	if string(decrypted) == message {
+		fmt.Println("✅ Criptografia/Descriptografia bem-sucedida!\n")
+	} else {
+		fmt.Println("❌ Erro na criptografia/descriptografia!\n")
+	}
+
+	fmt.Println("=== Teste de Assinatura Digital ElGamal ===")
+
+	// 1. Gerar assinatura
+	r, s, err := elgamal.Sign(priv, []byte(message))
+	if err != nil {
+		log.Fatal("Erro ao gerar assinatura:", err)
+	}
+
+	fmt.Println("Assinatura gerada:")
+	fmt.Printf("r = %x\n", r)
+	fmt.Printf("s = %x\n", s)
+
+	// 2. Verificar assinatura
+	valid, err := elgamal.Verify(pub, []byte(message), r, s)
+	if err != nil {
+		log.Fatal("Erro ao verificar assinatura:", err)
+	}
+
+	if valid {
+		fmt.Println("✅ Assinatura válida!")
+	} else {
+		fmt.Println("❌ Assinatura inválida!")
+	}
+
+	fmt.Println("\n=== Teste Completo Concluído ===")
+}
 ```
 
 ### Primitivas Criptográficas Anubis
