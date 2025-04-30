@@ -3,7 +3,7 @@ EAC Authenticated Mode of Operation
 
 #### Camelo: Um Esquema DLIES Híbrido com Ciphersuites Brasileiras
 
-O Camelo é um esquema de criptografia híbrida para estabelecer um canal seguro entre duas partes através de um canal não-seguro (vide E2E), que combina ElGamal Key Agreement (Negociação de Chave Secreta), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis, o modo de operação AEAD (Authenticated Encryption with Associated Data) EAC (Encrypt-then-Authenticate-then-Combine), e função de hash Whirlpool, além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2. Este exemplo usa parametros de 3072-bit que oferecem 128-bit de nível de segurança, mas parametros maiores podem ser gerados com a ferramenta `paramgem` deste mesmo projeto.
+O Camelo é um esquema de criptografia híbrida para estabelecer um canal seguro entre duas partes através de um canal não-seguro (vide E2E), que combina ElGamal Key Agreement (Negociação de Chave Secreta), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis, o modo de operação AEAD (Authenticated Encryption with Associated Data) EAC (Encrypt-then-Authenticate-then-Combine), e função de hash Whirlpool, além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2. Este exemplo usa parâmetros de 3072-bit que oferecem 128-bit de nível de segurança, mas parametros maiores podem ser gerados com a ferramenta `paramgem` deste mesmo projeto.
 
 ```
 Emissor                                                       Destinatário
