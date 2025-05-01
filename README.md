@@ -3,7 +3,7 @@ EAC Authenticated Mode of Operation
 
 #### Camelo: Um Esquema DLIES Híbrido com Ciphersuites Brasileiras
 
-O Camelo é um esquema de criptografia híbrida para estabelecer um canal seguro entre duas partes através de um canal não-seguro (vide E2E), que combina ElGamal Key Agreement (Acordo de Chave Compartilhada), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis e a função de hash Whirlpool, de coautoria de Paulo S.L.M. Barreto da Escola Politécnica da Universidade de São Paulo (USP), além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2. Este exemplo usa parâmetros de 3072-bit que oferecem 128-bit de nível de segurança, mas parametros maiores podem ser gerados com a ferramenta `paramgen` deste mesmo projeto. O modo de operação EAC (Encrypt-then-Authenticate-then-Combine) é um modo AEAD (Authenticated Encryption with Associated Data).
+O Camelo é um esquema de criptografia híbrida assíncrona para estabelecer um canal seguro entre duas partes através de um canal não-seguro (vide E2E), que combina ElGamal Key Agreement (Acordo de Chave Compartilhada), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis e a função de hash Whirlpool, ambas de coautoria de Paulo S. L. M. Barreto da Escola Politécnica da Universidade de São Paulo (USP), além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2, escrita em Puro Go e Puro PHP (sem necessidade de bibliotecas externas). Este exemplo usa parâmetros de 3072-bit que oferecem 128-bit de nível de segurança, mas parametros maiores podem ser gerados com a ferramenta `paramgen` deste mesmo projeto. O modo de operação EAC (Encrypt-then-Authenticate-then-Combine) é um modo AEAD (Authenticated Encryption with Associated Data).
 ```
 Emissor                                                       Destinatário
   |                                                                 |
@@ -20,7 +20,7 @@ Emissor                                                       Destinatário
 
 Ele é interoperável entre PHP e Go, mas pode ser usado de forma independente em qualquer sistema. Projetado para segurança e eficiência, o EAC é uma escolha robusta para aplicações que exigem confidencialidade, autenticidade e integridade.
 
-### EAC Exemplo de Uso
+### EAC Exemplo de Uso (PHP)
 ```php
 <?php
 include "EAC.php";
@@ -45,6 +45,61 @@ try {
     echo "Erro: " . $e->getMessage() . "\n";
 }
 ```
+
+### EAC Exemplo de Uso (Go)
+```go
+package main
+
+import (
+	"encoding/hex"
+	"fmt"
+	"log"
+	
+	"github.com/pedroalbanese/eac"
+)
+
+func main() {
+	// Chave hard-coded (128-bit Anubis)
+	key, err := hex.DecodeString("00000000000000000000000000000000")
+	if err != nil {
+		log.Fatalf("hex decode key: %v", err)
+	}
+	
+	// Dados hard-coded
+	head := []byte("cabecalho")
+	plaintext := []byte("mensagem secreta com eac")
+
+	// Instancia AEAD
+	aead, err := eac.NewEAC(key)
+
+	if err != nil {
+		log.Fatalf("new AEAD: %v", err)
+	}
+
+	// 1) Encrypt: Seal(dst, nonce, plaintext, associatedData)
+	nonce := make([]byte, 12)
+	
+	// Prefix bit zero como no EAX
+	nonce[0] &= 0x7F
+
+	out := aead.Seal(nonce, nonce, plaintext, head)
+
+	// Print hex: nonce | ciphertext | tag
+	fmt.Println(hex.EncodeToString(out))
+
+	// 2) Decrypt: separa nonce e ciphertext+tag
+	nonce2 := out[:aead.NonceSize()]
+	ciphertext := out[aead.NonceSize():]
+
+	pt, err := aead.Open(nil, nonce2, ciphertext, head)
+	if err != nil {
+		log.Fatalf("open: %v", err)
+	}
+
+	fmt.Println(string(pt))
+}
+```
+
 ### ElGamal Exemplo de Uso (PHP)
 ```php
 <?php
