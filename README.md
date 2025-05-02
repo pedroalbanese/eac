@@ -43,12 +43,12 @@ O Camelo é um esquema de criptografia híbrido assíncrono para estabelecer um 
    $K_{\text{sym}} = (b \cdot a^{-x_B}) \mod p$.
 7. Agora, tanto Alice quanto Bob possuem a chave simétrica compartilhada $K_{\text{sym}}$ para comunicação futura.
 
-Onde:
-$H(m)$  Representa o valor de hash da mensagem (Whirlpool neste caso).
-$k^{-1}$  Denota o inverso multiplicativo modular de $k$ módulo $(p - 1)$.
-$\text{gcd}(a, b)$  Denota o Máximo Divisor Comum (MDC) de $a$ e $b$.
-$k_A$  É uma chave secreta aleatória conhecida apenas por Alice durante essa sessão.
-$\equiv$  Indica congruência.
+Onde:  
+$H(m)$  Representa o valor de hash da mensagem (Whirlpool neste caso).  
+$k^{-1}$  Denota o inverso multiplicativo modular de $k$ módulo $(p - 1)$.  
+$\text{gcd}(a, b)$  Denota o Máximo Divisor Comum (MDC) de $a$ e $b$.  
+$k_A$  É uma chave secreta aleatória conhecida apenas por Alice durante essa sessão.  
+$\equiv$  Indica congruência.  
 
 </details>
 
