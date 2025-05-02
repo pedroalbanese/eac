@@ -78,6 +78,17 @@ Emissor                                                       Destinatário
 
 Ele é interoperável entre PHP e Go, mas pode ser usado de forma independente em qualquer sistema. Projetado para segurança e eficiência, o EAC é uma escolha robusta para aplicações que exigem confidencialidade, autenticidade e integridade.
 
+
+#### Álgebra Modular e Teoria dos Números
+O esquema ElGamal é baseado em álgebra modular e teoria dos grupos cíclicos finitos. ElGamal é um exemplo clássico de como se usa matemática abstrata para construir sistemas criptográficos concretos e seguros.
+
+| Etapa              | Área Matemática                                   |
+|--------------------|---------------------------------------------------|
+| Geração de chaves  | Álgebra modular, teoria dos grupos                |
+| Assinatura digital | Teoria dos números, inverso modular               |
+| Verificação        | Propriedades de grupos e congruência              |
+| Acordo de chaves   | Aritmética modular, segurança de logaritmo discreto |
+
 ### EAC Exemplo de Uso (PHP)
 ```php
 <?php
