@@ -80,7 +80,7 @@ Ele é interoperável entre PHP e Go, mas pode ser usado de forma independente e
 
 
 #### Álgebra Modular e Teoria dos Números
-O esquema ElGamal é um algoritmo de chave pública baseado em álgebra modular e teoria dos grupos cíclicos finitos. É um exemplo clássico de como se usa matemática abstrata para construir sistemas criptográficos concretos e seguros.
+O ElGamal é um algoritmo de chave pública baseado em álgebra modular e teoria dos grupos cíclicos finitos. É um exemplo clássico de como se usa matemática abstrata para construir sistemas criptográficos concretos e seguros.
 
 | Etapa              | Área Matemática                                   |
 |--------------------|---------------------------------------------------|
