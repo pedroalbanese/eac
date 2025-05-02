@@ -9,7 +9,7 @@ O Camelo é um esquema de criptografia híbrido assíncrono para estabelecer um 
 - Anubis Involutional SPN 128-bit block cipher (ESAT/COSIC)
 - RFC 2104: HMAC - Keyed-Hashing for Message Authentication
 - RFC 4493: Cipher-based Message Authentication Code (CMAC)
-- RFC 4884, section 9.1. Public-Key Algorithms: Elgamal
+- RFC 4880, section 9.1. Public-Key Algorithms: Elgamal
 - RFC 5869: HMAC-based Key Derivation Function (HKDF)
 - RFC 6070: Password-Based Key Derivation Function 2 (PBKDF2)
 - ISO/IEC 10118-3:2003 Whirlpool (ESAT/COSIC)
