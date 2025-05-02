@@ -4,6 +4,48 @@ EAC Authenticated Mode of Operation
 #### Camelo: Um Esquema DLIES Híbrido com Ciphersuites Brasileiras
 
 O Camelo é um esquema de criptografia híbrido assíncrono para estabelecer um canal seguro entre duas partes através de um canal não-seguro (vide E2E), que combina ElGamal Key Agreement (Acordo de Chave Compartilhada), assinatura digital e primitivas criptográficas brasileiras, incluindo a cifra de bloco Anubis e a função de hash Whirlpool, ambas de coautoria de Paulo S. L. M. Barreto da Escola Politécnica da Universidade de São Paulo (USP), além de esquemas de autenticação e derivação de chave como HMAC, HKDF e PBKDF2, escrito em Puro Go e Puro PHP (sem necessidade de bibliotecas externas). Este exemplo usa parâmetros de 3072-bit que oferecem 128-bit de nível de segurança, mas parametros maiores podem ser gerados com a ferramenta `paramgen` deste mesmo projeto. O modo de operação EAC (Encrypt-then-Authenticate-then-Combine) é um modo AEAD (Authenticated Encryption with Associated Data).
+
+<details>
+  <summary>Teoria do ElGamal</summary>  
+
+#### Geração de Chaves
+
+1. Gerar um número primo grande $p$.
+2. Selecionar um gerador $g \in [2, p-2]$.
+3. Gerar uma chave privada $x$ aleatoriamente.
+4. Calcular a chave pública $Y = g^x \mod p$.
+
+#### Assinatura Digital
+
+1. Selecionar um valor aleatório $k$ tal que $1 < k < p-1$, $\text{gcd}(k, p-1) = 1$.
+2. Calcular o primeiro componente da assinatura: $r = g^k \mod p$.
+3. Calcular o segundo componente da assinatura: $s \equiv (H(m) - x \cdot r) \cdot k^{-1} \mod (p-1)$.
+
+#### Verificação da Assinatura Digital
+
+1. Receber a mensagem $m$ e os componentes da assinatura $(r, s)$.
+2. Calcular $w \equiv s^{-1} \mod (p-1)$.
+3. Calcular $u_1 \equiv H(m) \cdot w \mod (p-1)$.
+4. Calcular $u_2 \equiv r \cdot w \mod (p-1)$.
+5. Calcular $v \equiv g^{u_1} \cdot Y^{u_2} \mod p$.
+6. A assinatura é válida se $v \equiv r \mod p$.
+
+#### Acordo de Chaves
+
+1. Bob gera seu par de chaves $(x_B, Y_B)$.
+2. Bob compartilha sua chave pública $Y_B$ com Alice.
+3. Alice gera uma chave simétrica aleatória $K_{\text{sym}}$.
+4. Alice criptografa $K_{\text{sym}}$ usando a chave pública de Bob:  
+   $a = g^{k_A} \mod p, \\
+   b = Y_B^{k_A} \cdot K_{\text{sym}} \mod p$.
+5. Alice envia o texto cifrado $(a, b)$ para Bob.
+6. Bob decifra o texto recebido usando sua chave privada para obter:  
+   $K_{\text{sym}} = (b \cdot a^{-x_B}) \mod p$.
+7. Agora, tanto Alice quanto Bob possuem a chave simétrica compartilhada $K_{\text{sym}}$ para comunicação futura.
+
+</details>
+
+#### Protocolo Completo
 ```
 Emissor                                                       Destinatário
   |                                                                 |
