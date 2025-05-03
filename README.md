@@ -14,13 +14,6 @@ O Camelo é um esquema de criptografia híbrido assíncrono para estabelecer um 
 - RFC 6070: Password-Based Key Derivation Function 2 (PBKDF2)
 - ISO/IEC 10118-3:2003 Whirlpool (ESAT/COSIC)
 
-#### TODO:
-  - [ ] ASN.1 DER Encoding
-  - [x] CTR Mode of operation
-  - [x] EAC Mode of operation
-  - [x] PBKDF2 Function
-  - [x] CMAC
-
 <details>
   <summary>Teoria do ElGamal</summary>  
 
@@ -436,6 +429,13 @@ $derivedKeyLen = 40;
 $derivedKey = pbkdf2($password, $salt, $iterations, $derivedKeyLen);
 echo "PBKDF2 com Whirlpool (hex): " . bin2hex($derivedKey) . PHP_EOL;
 ```
+
+#### TODO:
+  - [ ] ASN.1 DER Encoding
+  - [x] CTR Mode of operation
+  - [x] EAC Mode of operation
+  - [x] PBKDF2 Function
+  - [x] CMAC
 
 ## Contribua
 **Use _issues_ para tudo**
