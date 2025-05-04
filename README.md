@@ -12,6 +12,7 @@ O Camelo é um esquema de criptografia DLIES (Discrete Logarithm Integrated Encr
 - RFC 4880, section 9.1. Public-Key Algorithms: Elgamal
 - RFC 5869: HMAC-based Key Derivation Function (HKDF)
 - RFC 6070: Password-Based Key Derivation Function 2 (PBKDF2)
+- RFC 7468: Privacy-Enhanced Mail (PEM format)
 - ISO/IEC 10118-3:2003 Whirlpool (ESAT/COSIC)
 
 <details>
@@ -431,7 +432,8 @@ echo "PBKDF2 com Whirlpool (hex): " . bin2hex($derivedKey) . PHP_EOL;
 ```
 
 #### TODO:
-  - [ ] ASN.1 DER Encoding
+  - [ ] Privacy-Enhanced Mail (PEM format)
+  - [x] ASN.1 DER Encoding
   - [x] CTR Mode of operation
   - [x] EAC Mode of operation
   - [x] PBKDF2 Function
