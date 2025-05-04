@@ -449,6 +449,40 @@ class ElGamalASN1
         if ($offset !== $end) throw new Exception("Dados extras em signature.");
         return ['r' => $r, 's' => $s];
     }
+    
+    public static function encode_parameters(array $params): string {
+        $p = self::encodeAsn1Integer(self::bcdeciToBinary($params['p']));
+        $g = self::encodeAsn1Integer(self::bcdeciToBinary($params['g']));
+        $y = self::encodeAsn1Integer(self::bcdeciToBinary($params['y']));
+        return self::encodeSequence([$p, $g, $y]);
+    }
+
+    public static function decode_parameters(string $der): array {
+        $offset = 0;
+        $end = self::decodeSequence($der, $offset);
+        $p = self::decodeAsn1Integer($der, $offset);
+        $g = self::decodeAsn1Integer($der, $offset);
+        $y = self::decodeAsn1Integer($der, $offset);
+        if ($offset !== $end) throw new Exception("Dados extras na chave pública.");
+        return ['p' => $p, 'g' => $g, 'y' => $y];
+    }
+
+    public static function encode_private_key(array $params): string {
+        $p = self::encodeAsn1Integer(self::bcdeciToBinary($params['p']));
+        $g = self::encodeAsn1Integer(self::bcdeciToBinary($params['g']));
+        $x = self::encodeAsn1Integer(self::bcdeciToBinary($params['x']));
+        return self::encodeSequence([$p, $g, $x]);
+    }
+
+    public static function decode_private_key(string $der): array {
+        $offset = 0;
+        $end = self::decodeSequence($der, $offset);
+        $p = self::decodeAsn1Integer($der, $offset);
+        $g = self::decodeAsn1Integer($der, $offset);
+        $x = self::decodeAsn1Integer($der, $offset);
+        if ($offset !== $end) throw new Exception("Dados extras na chave privada.");
+        return ['p' => $p, 'g' => $g, 'x' => $x];
+    }
 }
 
 // Parâmetros públicos do sistema (3072 bits)
