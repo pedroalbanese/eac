@@ -70,7 +70,7 @@ Emissor                                                       Destinatário
   |---(2) Criptografa mensagem com Anubis em modo AEAD------------->|
   |---(3) Encapsula chave simétrica com chave pública do receptor-->|
   |---(4) Assina criptograma--------------------------------------->|
-  |---(5) Envia criptograma e assinatura--------------------------->|
+  |---(5) Envia ciphertext, criptograma e assinatura--------------->|
   |                                                                 |
   |<--(6) Verifica assinatura com a chave pública do emissor--------|
   |<--(7) Desencapsula chave simétrica------------------------------|
