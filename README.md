@@ -238,7 +238,14 @@ import (
 	"math/big"
 
 	"github.com/pedroalbanese/eac/elgamal"
+	"github.com/pedroalbanese/whirlpool"
 )
+
+func hashMessage(message string) []byte {
+	hasher := whirlpool.New()
+	hasher.Write([]byte(message))
+	return hasher.Sum(nil)
+}
 
 func main() {
 	// Configuração de chaves
@@ -274,15 +281,18 @@ func main() {
 
 	// Verificação de criptografia
 	if string(decrypted) == message {
-		fmt.Println("✅ Criptografia/Descriptografia bem-sucedida!\n")
+		fmt.Println("✅ Criptografia/Descriptografia bem-sucedida!")
 	} else {
-		fmt.Println("❌ Erro na criptografia/descriptografia!\n")
+		fmt.Println("❌ Erro na criptografia/descriptografia!")
 	}
 
-	fmt.Println("=== Teste de Assinatura Digital ElGamal ===")
+	fmt.Println("=== Teste de Assinatura Digital ElGamal com Pré-Hash Whirlpool ===")
+
+	// Aplicar pré-hash Whirlpool
+	hashedMessage := hashMessage(message)
 
 	// 1. Gerar assinatura
-	r, s, err := elgamal.Sign(priv, []byte(message))
+	r, s, err := elgamal.Sign(priv, hashedMessage)
 	if err != nil {
 		log.Fatal("Erro ao gerar assinatura:", err)
 	}
@@ -292,7 +302,7 @@ func main() {
 	fmt.Printf("s = %x\n", s)
 
 	// 2. Verificar assinatura
-	valid, err := elgamal.Verify(pub, []byte(message), r, s)
+	valid, err := elgamal.Verify(pub, hashedMessage, r, s)
 	if err != nil {
 		log.Fatal("Erro ao verificar assinatura:", err)
 	}
